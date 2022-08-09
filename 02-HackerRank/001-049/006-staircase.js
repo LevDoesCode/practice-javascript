@@ -9,4 +9,4 @@ function staircase(n) {
   }
 }
 
-staircase(6);
+staircase(16);
