@@ -4,7 +4,6 @@ function repeatedString(s, n) {
   if (aMatches == null)
     return 0;
   let asInString = aMatches.length;
-  
   // Find the number of whole strings we can fit
   let wholeStrings = Math.floor(n / s.length);
   // Find the number of remainder character after we fit whole strings
