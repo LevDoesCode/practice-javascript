@@ -77,20 +77,20 @@ let n1 = 4;
 let k1 = 0;
 let q1 = [4, 4];
 let o1 = [];
-//console.log(queensAttack(n1, k1, q1[0], q1[1], o1));
+console.log(queensAttack(n1, k1, q1[0], q1[1], o1));
 
 let n2 = 5;
 let k2 = 3;
 let q2 = [4, 3];
 let o2 = [[5, 5], [4, 2], [2, 3]];
-//console.log(queensAttack(n2, k2, q2[0], q2[1], o2));
+console.log(queensAttack(n2, k2, q2[0], q2[1], o2));
 
 let n3 = 8;
 let k3 = 0;
 let q3 = [1, 1];
 let o3 = [[5, 3]];
-//console.log(queensAttack(n3, k3, q3[0], q3[1], o3));
-//console.log(queensAttack(n3, k3, 5, 6, o3));
+console.log(queensAttack(n3, k3, q3[0], q3[1], o3));
+console.log(queensAttack(n3, k3, 5, 6, o3));
 
 let n4 = 88587;
 let k4 = 9;
