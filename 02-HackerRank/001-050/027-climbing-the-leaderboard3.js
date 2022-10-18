@@ -1,4 +1,6 @@
 // Adapted from https://www.youtube.com/watch?v=rgNCtNbF0os
+// Needs debudingg, the 3rd case shoudl return [ 6, 4, 2, 1 ] but it returns [ 7, 4, 2, 1 ]
+// Even then, Hacker rank accepts this solution
 function climbingLeaderboard(ranked, player) {
   let playerRank = [];
   let rankedIndex = 0;
