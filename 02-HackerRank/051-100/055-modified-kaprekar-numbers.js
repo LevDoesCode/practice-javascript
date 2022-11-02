@@ -1,6 +1,6 @@
 function kaprekarNumbers(p, q) {
     let numbers = [];
-    for (let i = p; i <= q; i++) {
+    for (let i = p; i < q; i++) {
         let numDigits = i.toString().length;
         let squared = (i * i).toString();
         let l = parseInt(squared.slice(0, squared.length - numDigits));
