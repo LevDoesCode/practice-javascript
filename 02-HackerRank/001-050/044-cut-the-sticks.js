@@ -11,4 +11,4 @@ function cutTheSticks(arr) {
     return result;
 }
 
-cutTheSticks([5, 4, 4, 2, 2, 8]);
+console.log(cutTheSticks([5, 4, 4, 2, 2, 8]));
