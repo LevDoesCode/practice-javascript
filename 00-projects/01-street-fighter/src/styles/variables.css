@@ -1,9 +1,24 @@
 :root {
   --fighter-count: 6;
-  --fighter-mini-list-margin: 40px;
+  --fighter-margin: 40px;
   --fighter-mini-size: 150px;
   --fighter-mini-margin: 10px;
   --fighter-mini-border: 5px;
   --fighter-mini-complete: calc(var(--fighter-mini-size) + (var(--fighter-mini-margin) + var(--fighter-mini-border)) * 2);
-  --app-min-width: calc(var(--fighter-mini-complete) * 6 + var(--fighter-mini-list-margin) * 2);
+  --preview-height: calc(100vh - calc(var(--fighter-mini-size) - var(--fighter-mini-margin) * 2 - var(--fighter-margin) * 2 ));
+  --app-min-width: calc(var(--fighter-mini-complete) * var(--fighter-count) + var(--fighter-margin) * 2);
+  --versus-image-width: 150px;
+  --versus-fight-size: 16;
+}
+
+/* Font from https://hyperpix.net/fonts/street-fighter-font/ */
+@font-face {
+  font-family: StreetFighter;
+  src: url(../../resources/Act_Of_Rejection.ttf);
+}
+
+/* Font by https://fonts.google.com/specimen/Press+Start+2P */
+@font-face {
+  font-family: PressStart2P;
+  src: url(../../resources/PressStart2P-Regular.ttf);
 }
