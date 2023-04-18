@@ -1,15 +1,15 @@
+@import 'reset.css';
+@import 'variables.css';
 @import 'arena.css';
 @import 'fighters.css';
 @import 'fighterPreview.css';
 @import 'previewContainer.css';
 @import 'modal.css';
-@import 'variables.css';
 
 html,
 body {
   height: 100%;
   width: 100%;
-  min-width: var(--app-min-width);
   overflow: hidden;
   margin: 0;
   padding: 0;
