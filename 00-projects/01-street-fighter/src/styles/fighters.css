@@ -7,13 +7,16 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  align-items: center;
 }
 
 .fighters___list {
-  margin: var(--fighter-mini-list-margin);
+  margin: var(--fighter-margin);
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: var(--app-min-width);
 }
 
 .fighters___fighter {
