@@ -34,9 +34,12 @@
   color: black;
   -webkit-text-fill-color: white;
   -webkit-text-stroke-width: 1px;
-  font-size: 26px;
-  font-family: 'Arial Black';
-  font-weight: 700;
+  font-size: 30px;
+  font-family: 'PressStart2P';
+  background: #B7DEED;
+  background: linear-gradient(to top, #B7DEED 0%, #71CEEF 25%, #21B4E2 75%, #B7DEED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .arena___fighter-indicator {
@@ -57,7 +60,17 @@
 }
 
 .arena___health-bar {
+  z-index: 1;
+  height: 100%;
+  width: 80%;
+  position: relative;
+  background-color: #ebd759;
+}
+
+.arena___health-bar-red {
   height: 100%;
   width: 100%;
-  background-color: #ebd759;
+  position: relative;
+  top: -100%;
+  background-color: red;
 }
