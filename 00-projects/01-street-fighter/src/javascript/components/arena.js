@@ -1,5 +1,6 @@
 import { createElement } from '../helpers/domHelper';
 import { createFighterImage } from './fighterPreview';
+import { fight } from './fight';
 
 export function renderArena(selectedFighters) {
   const root = document.getElementById('root');
@@ -7,10 +8,10 @@ export function renderArena(selectedFighters) {
 
   root.innerHTML = '';
   root.append(arena);
-
   // todo:
   // - start the fight
   // - when fight is finished show winner
+  fight(...selectedFighters);
 }
 
 function createArena(selectedFighters) {
@@ -38,9 +39,10 @@ function createHealthIndicator(fighter, position) {
   const fighterName = createElement({ tagName: 'span', className: 'arena___fighter-name' });
   const indicator = createElement({ tagName: 'div', className: 'arena___health-indicator' });
   const bar = createElement({ tagName: 'div', className: 'arena___health-bar', attributes: { id: `${position}-fighter-indicator` }});
+  const bar2 = createElement({ tagName: 'div', className: 'arena___health-bar-red', attributes: { id: `${position}-fighter-indicator-red` }});
 
   fighterName.innerText = name;
-  indicator.append(bar);
+  indicator.append(bar, bar2);
   container.append(fighterName, indicator);
 
   return container;
