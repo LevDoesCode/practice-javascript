@@ -1,6 +1,6 @@
 export function Fighter(fighterDetails, direction) {
     this.id = parseInt(fighterDetails._id);
-    this.heatlh = fighterDetails.health;
+    this.health = fighterDetails.health;
     this.attack = fighterDetails.attack;
     this.defense = fighterDetails.defense;
     this.name = fighterDetails.name;
