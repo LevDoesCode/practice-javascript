@@ -20,6 +20,10 @@
   transform: scaleX(-1);
 }
 
+.arena___fighter {
+  position: relative;
+}
+
 .arena___fighter img {
   height: 480px;
 }
@@ -73,4 +77,16 @@
   position: relative;
   top: -100%;
   background-color: red;
+}
+
+.fighter___hit {
+  filter: brightness(0) invert(1);
+}
+
+.fighter___block {
+  filter: grayscale(75%);
+}
+
+.fighter___blocked {
+  filter: grayscale(100%) sepia(100%) hue-rotate(90deg);
 }
