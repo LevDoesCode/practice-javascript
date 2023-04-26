@@ -40,8 +40,8 @@
   -webkit-text-stroke-width: 1px;
   font-size: 30px;
   font-family: 'PressStart2P';
-  background: #B7DEED;
-  background: linear-gradient(to top, #B7DEED 0%, #71CEEF 25%, #21B4E2 75%, #B7DEED 100%);
+  background: #b7deed;
+  background: linear-gradient(to top, #b7deed 0%, #71ceef 25%, #21b4e2 75%, #b7deed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -66,7 +66,7 @@
 .arena___health-bar {
   z-index: 1;
   height: 100%;
-  width: 80%;
+  width: 100%;
   position: relative;
   background-color: #ebd759;
 }
@@ -89,4 +89,8 @@
 
 .fighter___blocked {
   filter: grayscale(100%) sepia(100%) hue-rotate(90deg);
+}
+
+.fighter___crit {
+  filter: sepia(100%) hue-rotate(190deg) saturate(900%);
 }
