@@ -11,14 +11,19 @@ export function renderArena(selectedFighters) {
   // todo:
   // - start the fight
   // - when fight is finished show winner
-  fight(...selectedFighters);
+  fight(...selectedFighters)
+    .then(([winner, events]) => {
+      window.removeEventListener('keyup', events[0]);
+      window.removeEventListener('keydown', events[1]);
+      console.log('won: ', winner.name);
+    });
 }
 
 function createArena(selectedFighters) {
   const arena = createElement({ tagName: 'div', className: 'arena___root' });
   const healthIndicators = createHealthIndicators(...selectedFighters);
   const fighters = createFighters(...selectedFighters);
-  
+
   arena.append(healthIndicators, fighters);
   return arena;
 }
@@ -38,8 +43,8 @@ function createHealthIndicator(fighter, position) {
   const container = createElement({ tagName: 'div', className: 'arena___fighter-indicator' });
   const fighterName = createElement({ tagName: 'span', className: 'arena___fighter-name' });
   const indicator = createElement({ tagName: 'div', className: 'arena___health-indicator' });
-  const bar = createElement({ tagName: 'div', className: 'arena___health-bar', attributes: { id: `${position}-fighter-indicator` }});
-  const bar2 = createElement({ tagName: 'div', className: 'arena___health-bar-red', attributes: { id: `${position}-fighter-indicator-red` }});
+  const bar = createElement({ tagName: 'div', className: 'arena___health-bar', attributes: { id: `${position}-fighter-indicator` } });
+  const bar2 = createElement({ tagName: 'div', className: 'arena___health-bar-red', attributes: { id: `${position}-fighter-indicator-red` } });
 
   fighterName.innerText = name;
   indicator.append(bar, bar2);
