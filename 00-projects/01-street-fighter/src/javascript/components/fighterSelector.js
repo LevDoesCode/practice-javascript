@@ -13,7 +13,6 @@ export function createFightersSelector() {
     const firstFighter = playerOne ?? fighter;
     const secondFighter = Boolean(playerOne) ? playerTwo ?? fighter : playerTwo;
     selectedFighters = [firstFighter, secondFighter];
-
     renderSelectedFighters(selectedFighters);
   };
 }
@@ -38,7 +37,9 @@ function renderSelectedFighters(selectedFighters) {
   const firstPreview = createFighterPreview(playerOne, 'left');
   const secondPreview = createFighterPreview(playerTwo, 'right');
   const versusBlock = createVersusBlock(selectedFighters);
-
+  if (playerTwo && playerOne.name == playerTwo.name) {
+    secondPreview.children[0].classList.add('fighter-double');
+  }
   fightersPreview.innerHTML = '';
   fightersPreview.append(firstPreview, versusBlock, secondPreview);
 }
