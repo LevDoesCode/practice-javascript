@@ -26,6 +26,10 @@
   transform: scaleX(-1);
 }
 
+.fighter-double {
+  filter: hue-rotate(90deg) saturate(100%);
+}
+
 .fighter-preview___stats {
   display: flex;
   width: 50%;
