@@ -84,11 +84,11 @@
 }
 
 .fighter___block {
-  filter: grayscale(75%);
+  filter: grayscale(75%) drop-shadow(15px 15px 15px black);
 }
 
 .fighter___blocked {
-  filter: grayscale(100%) sepia(100%) hue-rotate(90deg);
+  filter: grayscale(75%) sepia(100%) hue-rotate(90deg) drop-shadow(15px 15px 15px black);
 }
 
 .fighter___crit {
