@@ -13,7 +13,7 @@
 .fighters___fade-out {
   visibility: hidden;
   opacity: 0;
-  transition: all 0s 3s, opacity 3s linear;
+  transition: visibility 0s 3s, opacity 3s linear;
 }
 
 .fighters___list {
