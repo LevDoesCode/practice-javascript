@@ -1,12 +1,12 @@
 export const controls = {
-  Player1Attack: 'KeyE',
-  Player1Block: 'KeyS',
-  Player2Attack: 'KeyU',
-  Player2Block: 'KeyK',
-  Player1Crit: ['KeyQ', 'KeyW', 'KeyE'],
-  Player2Crit: ['KeyU', 'KeyI', 'KeyO'],
-  Player1Right: 'KeyD',
-  Player1Left: 'KeyA',
-  Player2Right: 'KeyL',
-  Player2Left: 'KeyJ'
+  Player1Attack: 'KeyR',
+  Player1Block: 'KeyW',
+  Player2Attack: 'KeyY',
+  Player2Block: 'KeyI',
+  Player1Crit: ['KeyA', 'KeyS', 'KeyD'],
+  Player2Crit: ['KeyJ', 'KeyK', 'KeyL'],
+  Player1Right: 'KeyE',
+  Player1Left: 'KeyQ',
+  Player2Right: 'KeyO',
+  Player2Left: 'KeyU'
 };
