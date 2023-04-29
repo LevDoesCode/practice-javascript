@@ -10,6 +10,12 @@
   align-items: center;
 }
 
+.fighters___fade-out {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0s 3s, opacity 3s linear;
+}
+
 .fighters___list {
   margin: var(--fighter-margin);
   display: flex;
@@ -22,9 +28,6 @@
 .fighters___fighter {
   height: var(--fighter-mini-size);
   width: var(--fighter-mini-size);
-  /* min-width: 150px; */
-  /* max-width: 150px; */
-  /* flex: 1; */
   flex-shrink: 0;
   flex-grow: 0;
   display: flex;
