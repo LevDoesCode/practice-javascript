@@ -1,5 +1,6 @@
 import { createElement } from '../helpers/domHelper';
 import { createFightersSelector } from './fighterSelector';
+import selectEffect from '../../../resources/sound/Choose-Sound-Effect.mp3';
 
 export function createFighters(fighters) {
   const selectFighter = createFightersSelector();
@@ -17,7 +18,11 @@ export function createFighters(fighters) {
 function createFighter(fighter, selectFighter) {
   const fighterElement = createElement({ tagName: 'div', className: 'fighters___fighter' });
   const imageElement = createImage(fighter);
-  const onClick = (event) => selectFighter(event, fighter._id);
+  const onClick = (event) => {
+    const selectSound = new Audio(selectEffect);
+    selectSound.play();
+    selectFighter(event, fighter._id);
+  };
 
   fighterElement.append(imageElement);
   fighterElement.addEventListener('click', onClick, false);
