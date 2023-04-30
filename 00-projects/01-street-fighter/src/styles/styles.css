@@ -42,4 +42,7 @@ img {
   font-size: 18px;
   background: rgba(255, 255, 255, 0.7);
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
 }
