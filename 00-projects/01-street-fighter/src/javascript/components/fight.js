@@ -1,24 +1,33 @@
 import { controls } from '../../constants/controls';
 import { Fighter } from './fighter';
+import punchSound1 from '../../../resources/sound/sfx-punch1.mp3';
+import punchSound2 from '../../../resources/sound/sfx-punch2.mp3';
+import punchSound3 from '../../../resources/sound/sfx-punch3.mp3';
+import punchSound4 from '../../../resources/sound/sfx-punch4.mp3';
+import critSound from '../../../resources/sound/sfx-punch5.mp3';
+import blockSound from '../../../resources/sound/block-6839.mp3';
+import fightSound from '../../../resources/sound/Fight-Sound-Effect.mp3'
 
 export async function fight(firstFighter, secondFighter) {
   let events = [];
+  const sounds = [punchSound1, punchSound2, punchSound3, punchSound4, critSound, blockSound];
+  const fightStart = new Audio(fightSound);
+  fightStart.play();
   return new Promise((resolve) => {
     const player1 = new Fighter(firstFighter, 'left');
     const player2 = new Fighter(secondFighter, 'right');
 
     const step = 50;
     const strokes = new Map();
-    const controlKeydown = function (event) {
-      if (event.defaultPrevented) {
-        return;
-      }
+    let winner = false;
+    const arena = document.getElementsByClassName('arena___root')[0];
 
+    const controlKeydown = function (event) {
       strokes.set(event.code, true);
       const player1BCR = player1.element.getBoundingClientRect();
       const player2BCR = player2.element.getBoundingClientRect();
-      const arena = document.getElementsByClassName('arena___root')[0];
-      let isCritHit = false;
+
+      // Player 1 can perform actions if not blocking
       if (!player1.isBlocking) {
         switch (event.code) {
           case controls.Player1Right:
@@ -27,25 +36,29 @@ export async function fight(firstFighter, secondFighter) {
           case controls.Player1Left:
             moveFighter(player1.element, 0, player2BCR.left, -step);
             break;
-          case controls.Player1Block:
-            block(player1, player2);
-            break;
-            e;
           case controls.Player1Crit[0]:
           case controls.Player1Crit[1]:
+          case controls.Player1Crit[2]:
+            const completeCombo1 =
+              strokes.has(controls.Player1Crit[0]) &&
+              strokes.has(controls.Player1Crit[1]) &&
+              strokes.has(controls.Player1Crit[2]);
+            if (completeCombo1 && player1.critHitAvailable) {
+              player1.critHitAvailable = false;
+              winner = hitPlayer(player1, player2, player1BCR.right, player2BCR.left, step, sounds);
+            }
+            break;
           case controls.Player1Attack:
-            if (player1.isCrit && strokes.get(controls.Player1Crit[0]) && strokes.get(controls.Player1Crit[1])) {
-              isCritHit = true;
-            }
-            const winner = hitPlayer(player1, player2, player1BCR.right, player2BCR.left, step, isCritHit);
-            if (winner) {
-              resolve([winner, events]);
-            }
+            winner = hitPlayer(player1, player2, player1BCR.right, player2BCR.left, step, sounds);
+            break;
+          case controls.Player1Block:
+            block(player1);
             break;
           default:
             break;
         }
       }
+      // Player 2 can perform actions if not blocking
       if (!player2.isBlocking) {
         switch (event.code) {
           case controls.Player2Right:
@@ -56,14 +69,18 @@ export async function fight(firstFighter, secondFighter) {
             break;
           case controls.Player2Crit[0]:
           case controls.Player2Crit[1]:
+          case controls.Player2Crit[2]:
+            const completeCombo2 =
+              strokes.has(controls.Player2Crit[0]) &&
+              strokes.has(controls.Player2Crit[1]) &&
+              strokes.has(controls.Player2Crit[2]);
+            if (completeCombo2 && player2.critHitAvailable) {
+              player2.critHitAvailable = false;
+              winner = hitPlayer(player2, player1, player1BCR.right, player2BCR.left, step, sounds);
+            }
+            break;
           case controls.Player2Attack:
-            if (player2.isCrit && strokes.get(controls.Player2Crit[0]) && strokes.get(controls.Player2Crit[1])) {
-              isCritHit = true;
-            }
-            const winner = hitPlayer(player2, player1, player1BCR.right, player2BCR.left, step, isCritHit);
-            if (winner) {
-              resolve([winner, events]);
-            }
+            winner = hitPlayer(player2, player1, player1BCR.right, player2BCR.left, step, sounds);
             break;
           case controls.Player2Block:
             block(player2);
@@ -72,13 +89,13 @@ export async function fight(firstFighter, secondFighter) {
             break;
         }
       }
-      event.preventDefault();
+
+      if (winner) {
+        resolve([winner, events]);
+      }
     };
 
-    function controlKeyup(event) {
-      if (event.defaultPrevented) {
-        return;
-      }
+    const controlKeyup = function (event) {
       strokes.delete(event.code);
       switch (event.code) {
         case controls.Player1Block:
@@ -92,9 +109,10 @@ export async function fight(firstFighter, secondFighter) {
       }
       event.preventDefault();
     }
+
     events.push(controlKeyup, controlKeydown);
-    window.addEventListener('keyup', controlKeyup);
-    window.addEventListener('keydown', controlKeydown);
+    document.addEventListener('keyup', controlKeyup);
+    document.addEventListener('keydown', controlKeydown);
   });
 }
 
@@ -128,26 +146,28 @@ function getPixels(pixelString) {
   return parseInt(pixelString.replace('px', ''));
 }
 
-function hitPlayer(attacker, defender, player1Right, player2Left, step, isCrit) {
-  if (player2Left - player1Right < step / 2) {
-    if (isCrit) {
-      attacker.isCrit = false;
-      defender.element.classList.toggle('fighter___crit');
-      setTimeout(() => {
-        attacker.isCrit = true;
-      }, 2000);
-      setTimeout(() => {
-        defender.element.classList.toggle('fighter___crit');
-      }, 250);
+function hitPlayer(attacker, defender, player1Right, player2Left, step, sounds) {
+  if (player2Left - player1Right <= step / 2) {
+    let soundEffect = null;
+    const isCritHit = !attacker.critHitAvailable;
+    if (defender.isBlocking) {
+      soundEffect = new Audio(sounds[sounds.length - 1]);
     } else {
-      effectHit(defender);
+      if (isCritHit) {
+        soundEffect = new Audio(sounds[4]);
+      } else {
+        const randomIndex = Math.floor(Math.random() * (sounds.length - 1));
+        soundEffect = new Audio(sounds[randomIndex]);
+      }
+      defender.health = Math.max(defender.health - attacker.attack, 0);
+      const percentage = parseInt((defender.health / defender.maxHealth) * 100);
+      const defenderBar = document.getElementById(`${defender.direction}-fighter-indicator`);
+      defenderBar.style.width = percentage + '%';
     }
-    
-    defender.health = Math.max(defender.health - attacker.attack, 0);
-    const percentage = parseInt((defender.health / defender.maxHealth) * 100);
-    const defenderBar = document.getElementById(`${defender.direction}-fighter-indicator`);
-    defenderBar.style.width = percentage + '%';
-    
+
+    effectHit(defender, attacker);
+    soundEffect.play();
+
     if (defender.health <= 0) {
       return attacker;
     }
@@ -155,14 +175,27 @@ function hitPlayer(attacker, defender, player1Right, player2Left, step, isCrit) 
   return false;
 }
 
-async function effectHit(defender) {
+async function effectHit(defender, attacker) {
   let hitClass = 'fighter___hit';
   let hitTime = 100;
+  const isCritHit = !attacker.critHitAvailable
+
+  if (isCritHit) {
+    setTimeout(() => {
+      attacker.critHitAvailable = true;
+    }, 2000);
+  }
+
   if (defender.isBlocking) {
     hitClass = 'fighter___blocked';
-    hitTime = 500;
+    hitTime = 250;
+  } else if (isCritHit) {
+    hitClass = 'fighter___crit'; 
+    hitTime = 250;
   }
+
   defender.element.classList.add(hitClass);
+
   setTimeout(() => {
     defender.element.classList.remove(hitClass);
   }, hitTime);
