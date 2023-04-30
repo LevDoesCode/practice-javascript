@@ -38,6 +38,16 @@ module.exports = {
       {
         test: /\.(png|jpg)$/,
         type: 'asset/resource'
+      },
+      {
+        test: /\.(mp3)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'sounds/'
+          }
+        }
       }
     ]
   },
