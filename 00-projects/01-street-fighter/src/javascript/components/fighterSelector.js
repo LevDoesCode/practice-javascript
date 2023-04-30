@@ -1,8 +1,11 @@
 import { createElement } from '../helpers/domHelper';
 import { renderArena } from './arena';
-import versusImg from '../../../resources/versus.png';
 import { createFighterPreview } from './fighterPreview';
 import { fighterService } from '../services/fightersService';
+import versusImg from '../../../resources/versus.png';
+import startFightSound from '../../../resources/sound/Start-Battle.mp3';
+import fightTheme from '../../../resources/sound/Honda-Theme.mp3';
+import selectTheme from '../../../resources/sound/Character-Select.mp3';
 
 export function createFightersSelector() {
   let selectedFighters = [];
@@ -18,6 +21,10 @@ export function createFightersSelector() {
 }
 
 const fighterDetailsMap = new Map();
+export const selectSound = new Audio(selectTheme);
+selectSound.loop = true;
+export const fightSound = new Audio(fightTheme);
+fightSound.loop = true;
 
 export async function getFighterInfo(fighterId) {
   // get fighter info from fighterDetailsMap or from service and write it to fighterDetailsMap
@@ -68,5 +75,13 @@ function createVersusBlock(selectedFighters) {
 }
 
 function startFight(selectedFighters) {
-  renderArena(selectedFighters);
+  selectSound.pause();
+  console.log(selectSound);
+  document.getElementsByClassName('fighters___root')[0].classList.add('fighters___fade-out');
+  const startSound = new Audio(startFightSound);
+  startSound.play();
+  setTimeout(() => {
+    fightSound.play();
+    renderArena(selectedFighters);
+  }, 4000);
 }
