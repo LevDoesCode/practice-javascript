@@ -1,6 +1,7 @@
 import { createElement } from '../helpers/domHelper';
 import { createFighterImage } from './fighterPreview';
 import { fight } from './fight';
+import { fightSound } from './fighterSelector';
 
 export function renderArena(selectedFighters) {
   const root = document.getElementById('root');
@@ -13,8 +14,9 @@ export function renderArena(selectedFighters) {
   // - when fight is finished show winner
   fight(...selectedFighters)
     .then(([winner, events]) => {
-      window.removeEventListener('keyup', events[0]);
-      window.removeEventListener('keydown', events[1]);
+      document.removeEventListener('keyup', events[0]);
+      document.removeEventListener('keydown', events[1]);
+      fightSound.pause();
       console.log('won: ', winner.name);
     });
 }
@@ -57,7 +59,9 @@ function createFighters(firstFighter, secondFighter) {
   const battleField = createElement({ tagName: 'div', className: `arena___battlefield` });
   const firstFighterElement = createFighter(firstFighter, 'left');
   const secondFighterElement = createFighter(secondFighter, 'right');
-
+  if(firstFighter.name == secondFighter.name) {
+    secondFighterElement.children[0].classList.add('fighter-double');
+  }
   battleField.append(firstFighterElement, secondFighterElement);
   return battleField;
 }
