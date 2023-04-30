@@ -7,6 +7,6 @@ export function Fighter(fighterDetails, direction) {
     this.defense = fighterDetails.defense;
     this.name = fighterDetails.name;
     this.isBlocking = false;
-    this.isCrit = true;
+    this.critHitAvailable = true;
     this.element = document.getElementsByClassName(`arena___fighter arena___${direction}-fighter`)[0];
 }
