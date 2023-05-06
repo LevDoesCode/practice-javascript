@@ -30,6 +30,14 @@
 
 .modal-body {
   padding: 1rem;
+  font-size: 12rem;
+  font-family: StreetFighterAlt;
+  background: #E50400;
+  background: -webkit-linear-gradient(to bottom, #E50400 33%, #770103 50%, #E50400 66%);
+  background: -moz-linear-gradient(to bottom, #E50400 33%, #770103 50%, #E50400 66%);
+  background: linear-gradient(to bottom, #E50400 33%, #770103 50%, #E50400 66%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .close-btn {
