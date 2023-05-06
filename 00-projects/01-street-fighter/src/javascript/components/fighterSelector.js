@@ -76,11 +76,13 @@ function createVersusBlock(selectedFighters) {
 
 function startFight(selectedFighters) {
   selectSound.pause();
+  selectSound.currentTime = 0;
   document.getElementsByClassName('fighters___root')[0].classList.add('fighters___fade-out');
   const startSound = new Audio(startFightSound);
   startSound.play();
+  const startDelay = 4000;
   setTimeout(() => {
     fightSound.play();
     renderArena(selectedFighters);
-  }, 4000);
+  }, startDelay);
 }
