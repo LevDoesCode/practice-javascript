@@ -26,7 +26,6 @@ export async function fight(firstFighter, secondFighter) {
       strokes.set(event.code, true);
       const player1BCR = player1.element.getBoundingClientRect();
       const player2BCR = player2.element.getBoundingClientRect();
-      console.log(strokes);
       // Player 1 can perform actions if not blocking
       if (!player1.isBlocking) {
         switch (event.code) {
