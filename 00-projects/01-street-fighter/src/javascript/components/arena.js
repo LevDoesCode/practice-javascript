@@ -2,6 +2,8 @@ import { createElement } from '../helpers/domHelper';
 import { createFighterImage } from './fighterPreview';
 import { fight } from './fight';
 import { fightSound } from './fighterSelector';
+import youWinSound from '../../../resources/sound/you-win.mp3';
+import { showWinnerModal } from './modal/winner';
 
 export function renderArena(selectedFighters) {
   const root = document.getElementById('root');
@@ -17,7 +19,10 @@ export function renderArena(selectedFighters) {
       document.removeEventListener('keyup', events[0]);
       document.removeEventListener('keydown', events[1]);
       fightSound.pause();
-      console.log('won: ', winner.name);
+      fightSound.currentTime = 0;
+      const youWin = new Audio(youWinSound);
+      youWin.play();
+      showWinnerModal(winner);
     });
 }
 
@@ -59,7 +64,7 @@ function createFighters(firstFighter, secondFighter) {
   const battleField = createElement({ tagName: 'div', className: `arena___battlefield` });
   const firstFighterElement = createFighter(firstFighter, 'left');
   const secondFighterElement = createFighter(secondFighter, 'right');
-  if(firstFighter.name == secondFighter.name) {
+  if (firstFighter.name == secondFighter.name) {
     secondFighterElement.children[0].classList.add('fighter-double');
   }
   battleField.append(firstFighterElement, secondFighterElement);
