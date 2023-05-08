@@ -10,7 +10,7 @@ First version of a Street Fighter III Clone using JavaScript asynchronous capabi
 2. Run `npm run start` at the root
 3. Open `http://localhost:9000/` or change in `webpack.config.js`
 
-# Acknowledgements
+# Acknowledgments
 
 ## CSS Reset
 * https://www.joshwcomeau.com/css/custom-css-reset/
