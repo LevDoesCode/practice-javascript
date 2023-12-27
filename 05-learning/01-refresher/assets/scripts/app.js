@@ -6,10 +6,13 @@ console.log(asfd);
 
 // import apiKey from "./util.js";
 import { apiKey2, abc as content } from "./util.js";
-// import * as util from "./util.js";
+import * as util from "./util.js";
 
-// console.log(util.apiKey);
-// console.log(content);
+console.log(util.apiKey);
+console.log(content);
+console.log(apiKey2);
+console.log(util.default);
+console.log(util.abc);
 
 // const userMessage = "Hello World!!!";
 
