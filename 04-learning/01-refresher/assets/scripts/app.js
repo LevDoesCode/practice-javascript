@@ -32,3 +32,13 @@ const greeting1 = createGreeting("Max");
 console.log(greeting1);
 console.log(createGreeting("Manuel", "Hello, what's up?"));
 console.log(createGreeting("Anna"));
+
+// Exporting an annonymous function with the function keyword
+// export default function() {
+//     console.log("Hi");
+// }
+
+// Exporting an annonymous function with the arrow function
+export default (userName, message) => {
+    console.log("Hi " + userName + ", " + message);
+};
