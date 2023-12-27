@@ -33,6 +33,21 @@ console.log(greeting1);
 console.log(createGreeting("Manuel", "Hello, what's up?"));
 console.log(createGreeting("Anna"));
 
+// Printing an arrow function
+console.log(() => {
+    return "Hi";
+});
+
+// Printing the result of calling an annonymous arrow function
+console.log(
+    (() => {
+        return "Hi";
+    })()
+);
+
+// Printing the result of calling an annonymous arrow function but without the curly braces
+console.log((() => "Hi")());
+
 // Exporting an annonymous function with the function keyword
 // export default function() {
 //     console.log("Hi");
