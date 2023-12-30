@@ -57,3 +57,27 @@ console.log((() => "Hi")());
 export default (userName, message) => {
     console.log("Hi " + userName + ", " + message);
 };
+
+// Objects
+const userName = "Lev";
+const age = 30;
+
+const person = {
+    name: userName,
+    age: age,
+    greet: function () {
+        console.log("Hi, I am " + this.name);
+        return this.name;
+    },
+    greet2() {
+        console.log("Hi, I am " + this.name);
+        return "";
+    },
+};
+
+// Printing the object
+console.log(person);
+// Printing the object's name property
+console.log(person.name);
+// Calling the object's greet method
+console.log(person.greet());
