@@ -60,11 +60,11 @@ export default (userName, message) => {
 
 // Objects
 const userName = "Lev";
-const age = 30;
+const agex = 30;
 
 const person = {
     name: userName,
-    age: age,
+    age: agex,
     greet: function () {
         console.log("Hi, I am " + this.name);
         return this.name;
@@ -155,3 +155,28 @@ console.log(exes);
 
 const exes2 = hobbies.map((hobby) => ({ text: hobby }));
 console.log(exes2);
+
+// Desctructuring
+const userData = ["Lev", "Villa"];
+const firstN = userData[0];
+const lastN = userData[1];
+
+// Using destructuring
+const [firstName, lastName] = userData;
+console.log(firstName);
+
+// Desctructuring objects
+// Normal declaration and assingment
+const user2 = { name: "Lev", age: 30 };
+const name2 = user2.name;
+const age2 = user2.age;
+
+// Desctructuring the array
+const { name3, age3 } = user2;
+console.log(name3, age3);
+// We need to use the same name as the property
+const { name, age } = user2;
+console.log(name, age);
+// Using aliases in destructuring
+const { name: userName2, age: userAge2 } = user2;
+console.log(userName2, userAge2);
