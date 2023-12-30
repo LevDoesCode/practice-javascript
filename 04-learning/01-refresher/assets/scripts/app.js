@@ -215,3 +215,9 @@ const hobbies3 = ["Sports", "Cooking", "Reading"];
 for (const hobby of hobbies3) {
     console.log(hobby);
 }
+
+// Grabbing the DOM
+const list = document.querySelector("ul");
+const listItems = document.querySelectorAll("li");
+console.log(list);
+list.children[0].remove();
