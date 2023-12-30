@@ -243,3 +243,12 @@ function greetDeep(greetFunction) {
 }
 
 greetDeep(() => console.log("Hello Greeter"));
+
+function init() {
+    function start() {
+        console.log("Starting...");
+    }
+    start();
+}
+
+init();
