@@ -180,3 +180,19 @@ console.log(name, age);
 // Using aliases in destructuring
 const { name: userName2, age: userAge2 } = user2;
 console.log(userName2, userAge2);
+
+// SPREAD OPERATOR
+const hobbies2 = ["Skiiing"];
+// Not usually the desired result
+const mergedArray1 = [hobbies, hobbies2];
+console.log(mergedArray1);
+// Using the spread operator
+const mergedArray2 = [...hobbies, ...hobbies2];
+console.log(mergedArray2);
+// Using the spread operator with objects
+const user3 = { name: "Lev", age: 30 };
+const user4 = {
+    ...user3,
+    hobbies: [...hobbies],
+};
+console.log(user4);
