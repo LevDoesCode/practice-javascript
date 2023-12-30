@@ -81,3 +81,47 @@ console.log(person);
 console.log(person.name);
 // Calling the object's greet method
 console.log(person.greet());
+
+// Declaring a class
+class Person {
+    constructor(name = "Lev", age = 30) {
+        this.name = name;
+        this.age = age;
+    }
+    // Instance field, unique to each instance of the class
+    greet = function () {
+        console.log("Hi, I am " + this.name);
+    };
+    // Class property, shared by all instances of the class
+    greet2() {
+        return "Hi, I am " + this.name;
+    }
+    // Class field, unique to each instance of the class
+    // Sames a Instance field
+    greet3 = () => {
+        return "Greet3: Hi, I am " + this.name;
+    };
+
+    // Class field
+    greet4 = function () {
+        this.greet5 = () => {
+            return "Greet5: Hi, I am ";
+        };
+        return this.greet3();
+    };
+}
+
+function MyClass() {
+    this.routine = () => {};
+}
+
+const lev1 = new Person();
+const lev2 = new Person("Lev2", 31);
+console.log(lev1);
+console.log(lev2);
+lev1.greet();
+console.log(lev2.greet2());
+console.log(lev2.greet3());
+console.log(lev2.greet4());
+console.log(lev2.greet5());
+console.log(new MyClass());
