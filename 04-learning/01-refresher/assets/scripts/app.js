@@ -221,3 +221,25 @@ const list = document.querySelector("ul");
 const listItems = document.querySelectorAll("li");
 console.log(list);
 list.children[0].remove();
+
+// Functions as parameters
+
+function handleTimeOut1() {
+    console.log("Timeout1");
+}
+
+const handleTimeOut2 = () => {
+    console.log("Timeout2");
+};
+
+setTimeout(handleTimeOut1, 500);
+setTimeout(handleTimeOut2, 1000);
+setTimeout(() => {
+    console.log("Timeout3");
+}, 1500);
+
+function greetDeep(greetFunction) {
+    greetFunction();
+}
+
+greetDeep(() => console.log("Hello Greeter"));
