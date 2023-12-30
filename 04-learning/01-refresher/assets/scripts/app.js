@@ -196,3 +196,22 @@ const user4 = {
     hobbies: [...hobbies],
 };
 console.log(user4);
+
+// Control structures
+let pass = "Hello";
+// pass = prompt("Enter your password");
+
+if (pass === "Hello") {
+    console.log("Hello works");
+} else if (pass === "hello") {
+    console.log("hello works");
+} else {
+    console.log("Nothing works");
+}
+
+// Using for/of. Doens't skip empty elements
+const hobbies3 = ["Sports", "Cooking", "Reading"];
+
+for (const hobby of hobbies3) {
+    console.log(hobby);
+}
