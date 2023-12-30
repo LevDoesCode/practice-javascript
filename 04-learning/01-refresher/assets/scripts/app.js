@@ -125,3 +125,33 @@ console.log(lev2.greet3());
 console.log(lev2.greet4());
 console.log(lev2.greet5());
 console.log(new MyClass());
+
+// Arrays
+const hobbies = ["Sports", "Cooking", "Reading"];
+// Showing the array and array items
+console.log(hobbies);
+console.log(hobbies[0]);
+console.log(hobbies[1]);
+// Adding an item to the array
+hobbies.push("Programming");
+console.log(hobbies);
+// Removing an item from the array
+hobbies.pop();
+console.log(hobbies);
+// Showing a specific item from the array
+const index = hobbies.findIndex((hobby) => {
+    return hobby === "Cooking";
+});
+
+const index2 = hobbies.findIndex((hobby) => hobby === "Programming");
+
+console.log(index);
+console.log(hobbies[index]);
+console.log(index2);
+
+// Map method
+const exes = hobbies.map((hobby) => hobby + "!");
+console.log(exes);
+
+const exes2 = hobbies.map((hobby) => ({ text: hobby }));
+console.log(exes2);
